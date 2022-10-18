@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 26, 2018 6:59:18 PM by Hibernate Tools 5.1.10.Final -->
+<hibernate-mapping>
+ <class catalog="inventory_management" name="inventory.model.Users" table="users">
+  <id name="id" type="java.lang.Integer">
+   <column name="ID"/>
+   <generator class="identity"/>
+  </id>
+  <!-- kết nối giữa model với các trường trong db  -->
+  <property generated="never" lazy="false" name="userName" type="string">
+   <column length="50" name="USER_NAME" not-null="true"/>
+  </property>
+  <property generated="never" lazy="false" name="password" type="string">
+   <column length="100" name="PASSWORD" not-null="true"/>
+  </property>
+  <property generated="never" lazy="false" name="email" type="string">
+   <column length="100" name="EMAIL"/>
+  </property>
+  <property generated="never" lazy="false" name="name" type="string">
+   <column length="100" name="NAME" not-null="true"/>
+  </property>
+  <property generated="never" lazy="false" name="activeFlag" type="int">
+   <column name="ACTIVE_FLAG" not-null="true"/>
+  </property>
+  <property generated="never" lazy="false" name="createDate" type="timestamp">
+   <column length="19" name="CREATE_DATE" not-null="true"/>
+  </property>
+  <property generated="never" lazy="false" name="updateDate" type="timestamp">
+   <column length="19" name="UPDATE_DATE" not-null="true"/>
+  </property>
+  <set fetch="select" inverse="true" lazy="true" name="userRoles"
+   sort="unsorted" table="user_role">
+   <key>
+    <column name="USER_ID" not-null="true"/>
+   </key>
+   <one-to-many class="inventory.model.UserRole"/>
+  </set>
+ </class>
+</hibernate-mapping>
